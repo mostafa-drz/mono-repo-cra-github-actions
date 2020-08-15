@@ -2,7 +2,7 @@ name: first-app
 on:
   push:
     paths:
-      - "first-app/"
+      - "first-app/**"
 jobs:
   build:
     runs-on: ubuntu-latest

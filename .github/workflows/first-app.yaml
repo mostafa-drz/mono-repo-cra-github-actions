@@ -4,12 +4,16 @@ defaults:
   run:
     working-directory: ./first-app
 jobs:
-  build:
+  pre:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - name: build the assets
         run: yarn run build
+    needs: [pre]

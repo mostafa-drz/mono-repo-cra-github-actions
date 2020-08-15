@@ -1,0 +1,17 @@
+{
+  "name": "react-client-monorepo-actions-ci-cd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:first": "npm run start --prefix first-app",
+    "start:second": "npm run start --prefix second-app",
+    "start:third": "npm run start --prefix third-app",
+    "start": "concurrently \"npm run start:first\" \"npm run start:second\" \"npm run start:third\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

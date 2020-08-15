@@ -7,6 +7,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm install
+        run: yarn install --frozen-lockfile
       - name: build the assets
-        run: yarn ci && yarn run build
+        run: yarn run build

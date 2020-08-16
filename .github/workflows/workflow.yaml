@@ -2,7 +2,7 @@ name: first-app
 on: push
 
 jobs:
-  tag:
+  tag-version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -10,6 +10,7 @@ jobs:
         with:
           node-version: 12
       - run: node ./scripts/tag.js
+      - run: node ./scripts/version.js
   first-app:
     needs: [tag]
     runs-on: ubuntu-latest

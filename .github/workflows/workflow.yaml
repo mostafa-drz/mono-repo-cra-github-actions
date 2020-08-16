@@ -2,7 +2,12 @@ name: first-app
 on: push
 
 jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./scripts/tag.sh
   first-app:
+    needs: [tag]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -20,6 +25,7 @@ jobs:
           name: first-app
           path: ./first-app/build
   second-app:
+    needs: [tag]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -37,6 +43,7 @@ jobs:
           name: second-app
           path: ./second-app/build
   third-app:
+    needs: [tag]
     runs-on: ubuntu-latest
     defaults:
       run:

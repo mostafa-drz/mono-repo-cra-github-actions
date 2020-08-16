@@ -6,7 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ./scripts/tag.js
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: node ./scripts/tag.js
   first-app:
     needs: [tag]
     runs-on: ubuntu-latest

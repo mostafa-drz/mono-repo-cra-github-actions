@@ -9,8 +9,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: sudo ./scripts/tag.sh
-      - run: sudo ./scripts/version.sh
+      - run: chmod +x ./scripts/tag.sh && ./scripts/tag.sh
+      - run: chmod +x ./scripts/version.sh && ./scripts/version.sh
   first-app:
     needs: [tag-version]
     runs-on: ubuntu-latest

@@ -15,6 +15,10 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: CI=true yarn test
       - run: yarn run build
+      - uses: actions/upload-artifact@master
+        with:
+          name: first-app-build
+          path: ./build
   second-app:
     runs-on: ubuntu-latest
     defaults:
@@ -28,6 +32,10 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: CI=true yarn test
       - run: yarn run build
+      - uses: actions/upload-artifact@master
+        with:
+          name: second-app-build
+          path: ./build
   third-app:
     runs-on: ubuntu-latest
     defaults:
@@ -41,3 +49,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: CI=true yarn test
       - run: yarn run build
+      - uses: actions/upload-artifact@master
+        with:
+          name: third-app-build
+          path: ./build

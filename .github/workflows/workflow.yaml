@@ -18,7 +18,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: first-app-build
-          path: build
+          path: ./first-app/build
   second-app:
     runs-on: ubuntu-latest
     defaults:
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: second-app-build
-          path: build
+          path: ./second-app/build
   third-app:
     runs-on: ubuntu-latest
     defaults:
@@ -52,4 +52,4 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: third-app-build
-          path: build
+          path: ./third-app/build

@@ -1,0 +1,43 @@
+name: first-app
+on: push
+
+jobs:
+  first-app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./first-app
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install --frozen-lockfile
+      - run: CI=true yarn test
+      - run: yarn run build
+  second-app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./second-app
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install --frozen-lockfile
+      - run: CI=true yarn test
+      - run: yarn run build
+  third-app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./third-app
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install --frozen-lockfile
+      - run: CI=true yarn test
+      - run: yarn run build

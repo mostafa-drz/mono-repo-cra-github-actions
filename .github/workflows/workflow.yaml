@@ -5,7 +5,7 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
-      - run: ./scripts/tag.sh
+      - run: ./scripts/tag.js
   first-app:
     needs: [tag]
     runs-on: ubuntu-latest

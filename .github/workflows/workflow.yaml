@@ -12,7 +12,7 @@ jobs:
       - run: node ./scripts/tag.js
       - run: node ./scripts/version.js
   first-app:
-    needs: [tag]
+    needs: [tag-version]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -30,7 +30,7 @@ jobs:
           name: first-app
           path: ./first-app/build
   second-app:
-    needs: [tag]
+    needs: [tag-version]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -48,7 +48,7 @@ jobs:
           name: second-app
           path: ./second-app/build
   third-app:
-    needs: [tag]
+    needs: [tag-version]
     runs-on: ubuntu-latest
     defaults:
       run:

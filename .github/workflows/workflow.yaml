@@ -2,7 +2,17 @@ name: first-app
 on: push
 
 jobs:
+  tag-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: chmod +x ./scripts/tag.sh && ./scripts/tag.sh
+      - run: chmod +x ./scripts/version.sh && ./scripts/version.sh
   first-app:
+    needs: [tag-version]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -20,6 +30,7 @@ jobs:
           name: first-app
           path: ./first-app/build
   second-app:
+    needs: [tag-version]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -37,6 +48,7 @@ jobs:
           name: second-app
           path: ./second-app/build
   third-app:
+    needs: [tag-version]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -72,7 +84,6 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
           ECR_REPOSITORY: test-ga
-          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$VERSION .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$VERSION

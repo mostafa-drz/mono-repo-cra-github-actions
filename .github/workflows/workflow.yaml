@@ -5,6 +5,7 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: ./scripts/tag.js
   first-app:
     needs: [tag]
